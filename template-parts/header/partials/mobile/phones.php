@@ -1,0 +1,22 @@
+<?php
+
+$phones = preg_split( '/\r\n|\r|\n/', get_theme_mod( 'contacts_phones' ) );
+
+?>
+
+<div class="mobile__menu--phone">
+    <div class="block-open__mobile-phone">
+        <button class="text-regular button-header__mobile headerMobileFirst">
+            <img src="<?=gti_get_image_asset_url( 'icons/phone-header.svg' ); ?>" class="phone-header">
+            <img src="<?=gti_get_image_asset_url( 'icons/phone-close.svg' ); ?>" class="none phone-close">
+        </button>
+
+        <div class="mobile-phone__list headerMobileListFirst">
+            <ul>
+                <?php foreach( $phones as $phone ) : ?>
+                    <li><a href="tel:<?=str_replace( ['+', '(', ')', ' '], '', $phone ); ?>"><?=$phone; ?></a></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+</div>
