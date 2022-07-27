@@ -3,6 +3,8 @@ jQuery(document).ready(function($){
 
     const regexp_name = /^[\wа-яА-ЯіїєІЇЄ]{3,32}$/
     const regexp_phone = /^\+38 \(0(\d{2})\) \d{3} \d{2} \d{2}/
+    const regexp_words = /^[\wа-яА-ЯіїєІЇЄ ]{3,64}$/
+    const regexp_message = /^[\wа-яА-ЯіїєІЇЄ ]{3,300}$/
 
     
     // Event listeners
@@ -39,6 +41,13 @@ jQuery(document).ready(function($){
                                             is_field_valid = false
                                         }
                                         break
+                                    
+                                    case 'cargo':
+                                    case 'direction':
+                                        if(!value.trim().length || !regexp_words.test(value.trim())){
+                                            is_field_valid = false
+                                        }
+                                        break
     
                                     default:
                                         break
@@ -54,7 +63,20 @@ jQuery(document).ready(function($){
                                 break
                         }
                         break
+                    
+                    case 'TEXTAREA':
+                        switch($field.attr('name')){
+                            case 'message':
+                                if(!value.trim().length || !regexp_message.test(value.trim())){
+                                    is_field_valid = false
+                                }
+                                break
                         
+                            default:
+                                break
+                        }
+                        break
+
                     default:
                         break
                 }
