@@ -8,7 +8,8 @@
  */
 
 if( !defined( 'GTI_THEME_VER' ) )
-    define( 'GTI_THEME_VER', '1.0.1' );
+    // define( 'GTI_THEME_VER', '1.0.1' );
+    define( 'GTI_THEME_VER', time() );
 
 if( !defined( 'GTI_THEME_URI' ) )
     define( 'GTI_THEME_URI', get_template_directory_uri() );
