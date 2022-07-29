@@ -44,7 +44,7 @@
                             <label for="calcf-weight" class="input__label"><?=__( 'Вага (кг)', 'gti' ); ?></label>
 
                             <div class="input__wrap">
-                                <input type="number" name="weight" placeholder="<?=__( '1000 кг', 'gti' ); ?>" class="input__input" id="calcf-weight">
+                                <input type="number" name="weight" placeholder="<?=__( '1000 кг', 'gti' ); ?>" class="input__input" id="calcf-weight" data-max="1000000">
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                             <label for="calcf-volume" class="input__label"><?=__( 'Об\'єм (м3)', 'gti' ); ?></label>
 
                             <div class="input__wrap">
-                                <input type="number" name="volume" placeholder="<?=__( '3 м3', 'gti' ); ?>" class="input__input" id="calcf-volume">
+                                <input type="number" name="volume" placeholder="<?=__( '3 м3', 'gti' ); ?>" class="input__input" id="calcf-volume" data-max="10000">
                             </div>
                         </div>
                     </div>

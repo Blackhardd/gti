@@ -4,7 +4,8 @@ jQuery(document).ready(function($){
     gti.init = function(){
         // Commons
         this.initMobileServicesMenu()
-        this.initPhoneInput()
+        this.initPhoneInputs()
+        this.initNumberInputs()
         this.initSelectInputs()
 
         // Service
@@ -19,12 +20,32 @@ jQuery(document).ready(function($){
         })
     }
 
-    gti.initPhoneInput = function(){
+    gti.initPhoneInputs = function(){
         if(!$('input[type="tel"]').length) return
 
         $('input[type="tel"]').each(function(){
             IMask($(this)[0], {
                 mask: '+38 (000) 000 00 00'
+            })
+        })
+    }
+
+    gti.initNumberInputs = function(){
+        if(!$('input[type="number"]').length) return
+
+        $('input[type="number"]').each(function(){
+            let prev_val = $(this).val()
+
+            $(this).on('input', function(){
+                if(typeof $(this).attr('data-max') !== 'undefined' && parseInt($(this).val()) > parseInt($(this).attr('data-max'))){
+                    $(this).val(prev_val)
+                }
+                else if(parseInt($(this).val()) < 0){
+                    $(this).val(prev_val)
+                }
+                else{
+                    prev_val = $(this).val()
+                }
             })
         })
     }
