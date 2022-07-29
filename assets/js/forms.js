@@ -65,7 +65,7 @@ jQuery(document).ready(function($){
                     case 'TEXTAREA':
                         switch($field.attr('name')){
                             case 'message':
-                                if(!value.trim().length || !regexp_message.test(value.trim())){
+                                if(value.length && (!value.trim().length || !regexp_message.test(value.trim()))){
                                     is_field_valid = false
                                 }
                                 break

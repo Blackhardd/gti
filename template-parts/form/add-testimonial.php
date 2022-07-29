@@ -26,7 +26,7 @@
 
         <div class="form-row form-row--one">
             <div class="form-col">
-                <div class="input input--message input--required">
+                <div class="input input--textarea input--message input--required">
                     <label for="atf-message" class="input__label"><?=__( 'Повідомлення', 'gti' ); ?></label>
 
                     <div class="input__wrap">
