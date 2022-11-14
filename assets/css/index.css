@@ -4223,7 +4223,7 @@ header {
     border-right: 1px solid #353434;
     left: 0;
     opacity: 0;
-    transform: translate(0, -100%, 0);
+    transform: translate(0, -100%);
     visibility: hidden;
     transition: 300ms ease-in-out;
     background: #171717;
@@ -4369,7 +4369,7 @@ header {
 .menu__category-services>li {
     padding-left: 24px;
     height: 52px;
-    border-bottom: 1px solidb #434242;
+    border-bottom: 1px solid #434242;
 }
 
 .menu__category-services>li:hover {

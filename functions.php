@@ -25,7 +25,6 @@ include GTI_THEME_PATH . '/inc/walkers/class-gti-services-walker.php';
 
 require GTI_THEME_PATH . '/inc/framework.php';
 require GTI_THEME_PATH . '/inc/post-types.php';
-require GTI_THEME_PATH . '/inc/filters.php';
 require GTI_THEME_PATH . '/inc/customizer.php';
 require GTI_THEME_PATH . '/inc/ajax.php';
 require GTI_THEME_PATH . '/inc/modals.php';
@@ -126,3 +125,30 @@ function gti_enqueue_scripts(){
         'ajax_url' => admin_url( 'admin-ajax.php' )
     ) );
 }
+
+
+// Add If-Modified-Since header.
+add_action( 'template_redirect', function(){
+    if( is_singular() && get_queried_object_id() ){
+        $modified_time = date( 'D, d M Y H:i:s', strtotime( get_the_modified_time( 'Y-m-d H:i:s', get_queried_object_id() ) ) );
+
+        header( "Last-Modified: " . $modified_time );
+    }
+} );
+
+
+// Add canonical tag.
+add_action( 'wp_head', function(){
+    global $wp;
+
+
+    $url = home_url( $wp->request );
+
+    if( strpos( $url, '/page/' ) !== false ){
+        $pos = strpos( $url, '/page/' );
+        $url = substr( $url, 0, $pos - strlen( $url ) );
+        $url = trailingslashit( $url );
+    }
+    
+    echo "<link rel='canonical' href='{$url}' />";
+} );

@@ -3,8 +3,8 @@
 /**
  * Template Name: Головна сторінка
  *
- * @package GTI
- * @since GTI 1.0.0
+ * @package     GTI
+ * @since       1.0.0
  */
 
 get_header();
@@ -20,7 +20,7 @@ if( $slider_items ) : ?>
                 <div class="swiper-wrapper">
                     <?php foreach( $slider_items as $index => $slide ) : ?>
                         <div class="swiper-slide banner-slider">
-                            <img class="zoom-image" src="<?=wp_get_attachment_image_url( $slide['image'], 'full' ); ?>">
+                            <img class="zoom-image" src="<?=wp_get_attachment_image_url( $slide['image'], 'full' ); ?>" alt="<?=$slide['title']; ?>">
 
                             <div class="swiper-slide__container">
                                 <div class="swiper-slide__content">
@@ -91,7 +91,7 @@ if( !$services_hide && !empty( $services_items ) ) : ?>
                             <a href="<?=get_permalink( $service['id'] ); ?>"></a>
 
                             <div class="services-img">
-                                <img src="<?=get_the_post_thumbnail_url( $service['id'], 'service-thumb' ); ?>">
+                                <img src="<?=get_the_post_thumbnail_url( $service['id'], 'service-thumb' ); ?>" alt="<?=get_the_title( $service['id'] ); ?>">
                             </div>
 
                             <div class="services-title">
