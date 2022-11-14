@@ -127,6 +127,10 @@ function gti_enqueue_scripts(){
 }
 
 
+// Remove SEO Yoast Schema.
+add_filter( 'wpseo_json_ld_output', '__return_false' );
+
+
 // Add If-Modified-Since header.
 add_action( 'template_redirect', function(){
     if( is_singular() && get_queried_object_id() ){
@@ -151,4 +155,30 @@ add_action( 'wp_head', function(){
     }
     
     echo "<link rel='canonical' href='{$url}' />";
+} );
+
+
+// Add article Schema to article page.
+add_action( 'wp_head', function(){
+    if( is_single() ) :
+        $image          = get_the_post_thumbnail_url( null, 'large' );
+        $published_date = date( 'D, d M Y H:i:s', strtotime( get_the_date( 'Y-m-d H:i:s' ) ) );
+        $modified_time  = date( 'D, d M Y H:i:s', strtotime( get_the_modified_time( 'Y-m-d H:i:s', get_queried_object_id() ) ) );
+
+    ?>
+        <script type="application/ld+json">
+            {
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            "headline": "<?php the_title(); ?>",
+            "image": [
+                "<?=$image; ?>"
+            ],
+            "datePublished": "<?=$published_date; ?>",
+            "dateModified": "<?=$modified_time; ?>"
+            }
+        </script>
+    <?php
+
+    endif;
 } );
